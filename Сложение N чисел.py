@@ -1,0 +1,7 @@
+f_in = open('input.txt', 'r')
+f_out = open('output.txt', 'w')
+L = f_in.read().split()
+s = sum(list(map(int, L)))
+f_out.write(str(s))
+f_in.close()
+f_out.close()
