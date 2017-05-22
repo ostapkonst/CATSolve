@@ -109,17 +109,18 @@ var
 //----------------------------------------------------------------------------//
 
 var
-  Number: integer = 0;
+  Number: integer = 0; // Количество уже включенных в парламент партий
   i, j: integer;
 begin
   InputFromFile('input.txt');
 
   repeat
     Inc(k);
-    QuickSort(1, MAX);
-    Number += A[1].Count;
-    Ans[k] := A[1].Name;
+    QuickSort(1, MAX); // Сортировка жителей по убыванию количества партий
+    Number += A[1].Count; // Выбор наиболее влиятельного гражданина
+    Ans[k] := A[1].Name; // В отсортированном массиве это всегда будет первый
 
+	// Пересчет жителей с исключением уже включенных в парламент партий
     i := 2;
     while A[i].Count > 0 do
     begin
@@ -133,9 +134,10 @@ begin
       Inc(i);
     end;
 
+	// Удаление первого гражданина из рассмотрения
     A[1].Partys := [];
     A[1].Count := 0;
-  until Number = N;
+  until Number = N; // Окончить цикл, когда все партии включены в парламент
 
   OutputToFile('output.txt');
 end.
